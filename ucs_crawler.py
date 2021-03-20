@@ -54,7 +54,7 @@ def runCrawler(mode):
     if mode == 'u':
         page = 2
     elif mode == 'r':
-        total_page = getTotalPage()
+        page = getTotalPage()
 
     for i in range(1, page):
         getUcsList(i)
