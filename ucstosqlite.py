@@ -6,10 +6,14 @@ class UcsSql:
         self.cur = self.conn.cursor()
 
     def listToSql(self, ucsList):
-        self.cur.executemany(
-            'INSERT INTO ucsList VALUES (?, ?, ?, ?, ?)',
-            ucsList
-        )
+        for ucs_data in ucsList:
+            try:
+                self.cur.executemany(
+                    'INSERT INTO ucsList VALUES (?, ?, ?, ?, ?)',
+                    [ucs_data]
+                )
+            except:
+                continue
         self.conn.commit()
         self.conn.close()
 
