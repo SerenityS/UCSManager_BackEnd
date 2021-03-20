@@ -47,8 +47,7 @@ def getUcsList(page):
             ucs_lv = "CO-OPx" + ucs_lv[1][5:]
         step_maker = ucs_data.find(class_="share_stepmaker").text.strip()
 
-        ucsList.append((ucs_no, song_title, song_artist, ucs_lv, step_maker))
-        print(ucs_no, song_title, song_artist, ucs_lv, step_maker)
+        ucsList.append((int(ucs_no), song_title, song_artist, ucs_lv, step_maker))
 
 
 def runCrawler(mode):
