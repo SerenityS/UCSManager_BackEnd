@@ -1,9 +1,10 @@
-import multiprocessing
 import requests
 
 from bs4 import BeautifulSoup
 
 ucsUrl = 'http://www.piugame.com/bbs/board.php?bo_table=ucs&page='
+
+ucsList = []
 
 
 def getTotalPage():
@@ -24,8 +25,6 @@ def getTotalPage():
 
 def getUcsList(page):
     res = requests.get(ucsUrl + str(page))
-    print(f"\nparseUrl = {ucsUrl + str(page)}, respCode = {res.status_code}")
-
     res_soup = BeautifulSoup(res.text, "html.parser")
 
     ucs_list = res_soup.find("tbody")
@@ -48,13 +47,16 @@ def getUcsList(page):
             ucs_lv = "CO-OPx" + ucs_lv[1][5:]
         step_maker = ucs_data.find(class_="share_stepmaker").text.strip()
 
+        ucsList.append((ucs_no, song_title, song_artist, ucs_lv, step_maker))
         print(ucs_no, song_title, song_artist, ucs_lv, step_maker)
-    return True
 
-if __name__ == "__main__":
-    total_page = getTotalPage()
 
-    pool = multiprocessing.Pool(4)
-    result = [pool.apply_async(getUcsList(i)) for i in range(1, total_page + 1)]
-    pool.close()
-    pool.join()
+def runCrawler(mode):
+    if mode == 'u':
+        page = 2
+    elif mode == 'r':
+        total_page = getTotalPage()
+
+    for i in range(1, page):
+        getUcsList(i)
+    return ucsList
