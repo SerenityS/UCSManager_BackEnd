@@ -35,7 +35,7 @@ def getUcsList(page):
     ucs_list = ucs_list.find_all('tr')
 
     for ucs_data in ucs_list:
-        song_no = ucs_data.find("img")['src'].replace("/piu.songimg/", "").replace(".png", "")
+        song_no = ucs_data.find(class_="share_song").find_all("img")[-1]['src'].replace("/piu.songimg/", "").replace(".png", "")
         for songData in songDatas:
             if song_no == songData['songNo']:
                 song_title_ko = songData['songTitle_ko']
@@ -55,7 +55,10 @@ def getUcsList(page):
             ucs_lv = "CO-OPx" + ucs_lv[1][5:]
         step_maker = ucs_data.find(class_="share_stepmaker").text.strip()
 
-        ucsList.append((int(ucs_no), song_title_ko, song_title_en, ucs_lv, step_maker))
+        try:
+            ucsList.append((int(ucs_no), song_title_ko, song_title_en, ucs_lv, step_maker))
+        except:
+            pass
 
 
 def runCrawler(mode):
@@ -64,6 +67,6 @@ def runCrawler(mode):
     elif mode == 'r':
         page = getTotalPage()
 
-    for i in range(1, page):
+    for i in range(900, page):
         getUcsList(i)
     return ucsList
