@@ -9,7 +9,7 @@ class UcsSql:
         for ucs_data in ucsList:
             try:
                 self.cur.executemany(
-                    'INSERT INTO ucsList VALUES (?, ?, ?, ?, ?, ?, ?)',
+                    'INSERT INTO ucsList VALUES (?, ?, ?, ?, ?)',
                     [ucs_data]
                 )
             except:
