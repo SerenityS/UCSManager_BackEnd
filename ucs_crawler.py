@@ -40,8 +40,6 @@ def getUcsList(page):
             if song_no == songData['songNo']:
                 song_title_ko = songData['songTitle_ko']
                 song_title_en = songData['songTitle_en']
-                song_artist_ko = songData['songArtist_ko']
-                song_artist_en = songData['songArtist_en']
 
         ucs_no = ucs_data.find(class_="btnaddslot_ucs btnAddtoUCSSLOT")['data-ucs_id'].strip()
         ucs_lv = ucs_data.find(class_="share_level").find("span")['class']
@@ -57,7 +55,7 @@ def getUcsList(page):
             ucs_lv = "CO-OPx" + ucs_lv[1][5:]
         step_maker = ucs_data.find(class_="share_stepmaker").text.strip()
 
-        ucsList.append((int(ucs_no), song_title_ko, song_title_en, song_artist_ko, song_artist_en, ucs_lv, step_maker))
+        ucsList.append((int(ucs_no), song_title_ko, song_title_en, ucs_lv, step_maker))
 
 
 def runCrawler(mode):
