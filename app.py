@@ -12,18 +12,9 @@ def getUcs():
     if len(param) == 0:
         return 'Error! No parameter found.'
 
-    if param['songTitle'] != '':
-        song_title = param['songTitle']
-    else:
-        song_title = 'None'
-    if param['songLv'] != '':
-        song_lv = param['songLv']
-    else:
-        song_lv = 'None'
-    if param['stepMaker'] != '':
-        step_maker = param['stepMaker']
-    else:
-        step_maker = 'None'
+    song_title = param['songTitle']
+    song_lv = param['songLv']
+    step_maker = param['stepMaker']
 
     result = UcsSql().findFromSql(song_title, song_lv, step_maker)
 
@@ -37,3 +28,4 @@ def getUcs():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0')
+
