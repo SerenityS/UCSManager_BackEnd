@@ -20,8 +20,8 @@ def getUcs():
         song_lv = param['songLv']
     else:
         song_lv = 'None'
-    if param['stepArtist'] != '':
-        step_maker = param['stepArtist']
+    if param['stepMaker'] != '':
+        step_maker = param['stepMaker']
     else:
         step_maker = 'None'
 
