@@ -1,7 +1,7 @@
 import json
 
 from flask import Flask, request
-from ucstosqlite import UcsSql
+from ucsSql import UcsSql
 
 app = Flask(__name__)
 
