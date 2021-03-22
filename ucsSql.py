@@ -6,7 +6,7 @@ class UcsSql:
         self.cur = self.conn.cursor()
 
     def findFromSql(self, song_title, song_lv, step_maker):
-        self.cur.execute(f"SELECT * FROM ucsList WHERE songTitle_ko LIKE '%{song_title}%' OR songTitle_en LIKE '%{song_title}%' OR songLv LIKE '%{song_lv}%' OR stepMaker LIKE '%{step_maker}%';")
+        self.cur.execute(f"SELECT * FROM ucsList WHERE (songTitle_ko LIKE '%{song_title}%' OR songTitle_en LIKE '%{song_title}%') AND songLv LIKE '%{song_lv}%' AND stepMaker LIKE '%{step_maker}%';")
         return self.cur.fetchall()
 
     def listToSql(self, ucsList):
@@ -25,3 +25,4 @@ class UcsSql:
         self.conn.execute('DELETE FROM ucsList')
         self.conn.commit()
         self.conn.close()
+
