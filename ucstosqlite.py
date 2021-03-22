@@ -5,8 +5,8 @@ class UcsSql:
         self.conn = sqlite3.connect('ucs_list.db')
         self.cur = self.conn.cursor()
 
-    def findFromSql(self, title, level, stepmaker):
-        self.cur.execute(f"SELECT * FROM ucsList WHERE songTitle_ko LIKE '%{title}%' OR songTitle_en LIKE '%{title}%' OR songLv LIKE '%{level}%' OR stepMaker LIKE '%{stepmaker}%';")
+    def findFromSql(self, song_title, song_lv, step_maker):
+        self.cur.execute(f"SELECT * FROM ucsList WHERE songTitle_ko LIKE '%{song_title}%' OR songTitle_en LIKE '%{song_title}%' OR songLv LIKE '%{song_lv}%' OR stepMaker LIKE '%{step_maker}%';")
         return self.cur.fetchall()
 
     def listToSql(self, ucsList):
