@@ -17,6 +17,7 @@ def getUcs():
     step_maker = param['stepMaker']
 
     result = UcsSql().findFromSql(song_title, song_lv, step_maker)
+    result.sort()
 
     response = app.response_class(
         response=json.dumps(result, ensure_ascii=False),
