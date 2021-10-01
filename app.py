@@ -37,7 +37,7 @@ def getPack():
 
     try:
         response = app.response_class(
-            response=json.dumps(packData[param['pack']], ensure_ascii=False),
+            response=json.dumps(packData[param['pack'].upper()], ensure_ascii=False),
             status=200,
             mimetype='application/json'
         )
